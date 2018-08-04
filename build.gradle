@@ -1,0 +1,62 @@
+/*
+* Plugins
+*/
+plugins{
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+/*
+* Dependencies
+*/
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile     gradleApi()
+    testCompile gradleTestKit()
+    testCompile 'junit:junit:4.12'
+}
+
+/*
+* Project Configuration
+*/
+
+project.description     = 'Project Template Plugin'
+project.group           = 'com.erwin'
+
+project.ext.name        = 'template-project'
+project.ext.pluginId    = 'gradle-project-template-plugin'
+project.ext.scm         = 'scm:git@github.com:erwindev/gradle-project-template-plugin.git'
+project.ext.url         = 'https://github.com/erwindev/gradle-project-template-plugin'
+
+/*
+* Configuration for: java-gradle-plugin
+* Register the entry point
+*/
+
+gradlePlugin {
+    plugins {
+        projectCreatorPlugin {
+            id = project.pluginId
+            implementationClass = 'com.erwin.template.TemplatePlugin'
+        }
+    }
+}
+
+/*
+* Publishing to local maven repo
+*/
+
+publishing {
+    publications {
+        pluginPublication (MavenPublication) {
+            from        components.java
+            groupId     project.group
+            artifactId  project.name
+            version     project.version
+        }
+    }
+}
