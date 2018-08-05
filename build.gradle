@@ -4,6 +4,9 @@
 plugins{
     id 'groovy'
     id 'java-gradle-plugin'
+
+    id 'com.gradle.plugin-publish' version '0.9.10'
+
     id 'maven-publish'
 }
 
@@ -59,4 +62,13 @@ publishing {
             version     project.version
         }
     }
+//    repositories {
+//        maven {
+//            url  "https://dl.bintray.com/erwindev/erwindev-maven-repo"
+//            credentials {
+//                username project.rtfUser
+//                password project.rtfSecret
+//            }
+//        }
+//    }
 }

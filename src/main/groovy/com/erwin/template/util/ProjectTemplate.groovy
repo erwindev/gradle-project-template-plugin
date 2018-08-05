@@ -66,6 +66,14 @@ class ProjectTemplate {
         }
         def templateReader = templateLocation?.newReader()
         if (templateReader) {
+
+            //this is the hack
+            params.each{ k, v ->
+                if(!v){
+                    params[k] = "\$$k"
+                }
+            }
+
             return new GStringTemplateEngine().createTemplate(templateReader)?.make(params)?.toString()
         }
         throw new RuntimeException("Could not find template: ${template}")
