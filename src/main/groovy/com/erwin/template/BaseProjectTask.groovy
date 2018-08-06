@@ -17,7 +17,20 @@ abstract class BaseProjectTask extends DefaultTask{
 
     @TaskAction
     void start(){
-        prompt()
+        boolean isTest = false
+        if (project.hasProperty("test")){
+            String test = project.property("test")
+            if (test.equalsIgnoreCase("true")){
+                isTest = true
+            }
+        }
+
+        projectName = "defaultProjectName"
+        classPackage = "com.erwindev.sample"
+        classPackageDir = classPackage.replace('.', separator)
+        if (!isTest) {
+            prompt()
+        }
         projectTask()
     }
 
@@ -25,7 +38,6 @@ abstract class BaseProjectTask extends DefaultTask{
         projectName = Interact.prompt('What is the name of the project?', defaultProjectName)
         classPackage = Interact.prompt('What is the base package (ex. com.erwindev.sample)?',  "$defaultPackageGroup")
         classPackageDir = classPackage.replace('.', separator)
-
     }
 
     abstract void projectTask()
