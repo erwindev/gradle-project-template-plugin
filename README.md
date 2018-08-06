@@ -15,7 +15,7 @@ repo. _note: I still need to figure out how I can publish the plugin to Bintray.
 ```
 $ git clone https://github.com/erwindev/gradle-project-template-plugin.git
 $ cd gradle-project-template-plugin
-$ ./gradlew publishToMavenLocal
+$ ./gradlew test publishToMavenLocal
 
 ```
 
