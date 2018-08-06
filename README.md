@@ -98,7 +98,7 @@ task 'initMyOwnProject' << {
     String projectName = Interact.prompt('Project Name:')
     String classPackage = 'com.erwindev.myproject'
     String classPackageDir = classPackage.replace('.', System.getProperty("file.separator"))
-    ProjectTemplate.fromRoot(projectName) {
+    ProjectTemplate.buildFromCurrentLocation(projectName) {
       'src'{
         'main'{
           'java'{

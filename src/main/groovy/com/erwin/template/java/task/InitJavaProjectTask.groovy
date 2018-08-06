@@ -13,7 +13,7 @@ class InitJavaProjectTask extends BaseProjectTask{
         String dtoName = 'ClassRoomDto'
         String serviceName = 'ClassRoomService'
 
-        ProjectTemplate.fromRoot("$projectName") {
+        ProjectTemplate.buildFromCurrentLocation("$projectName") {
             'src' {
                 'main' {
                     'java' {

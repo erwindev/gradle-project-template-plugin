@@ -94,7 +94,7 @@ class ProjectTemplate {
         }
     }
 
-    static void fromRoot(String path, Closure closure = {}){
+    static void buildFromCurrentLocation(String path, Closure closure = {}){
         new ProjectTemplate().directory(path, closure)
     }
 }

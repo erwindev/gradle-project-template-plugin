@@ -32,7 +32,7 @@ class ExportJavaTemplateTask extends DefaultTask{
     }
 
     private void exportTemplates(def templates = []) {
-        ProjectTemplate.fromRoot ('export-java-templates') {
+        ProjectTemplate.buildFromCurrentLocation ('export-java-templates') {
             templates.each { template ->
                 def tStream = getClass().getResourceAsStream(template)
                 "$template" tStream.text

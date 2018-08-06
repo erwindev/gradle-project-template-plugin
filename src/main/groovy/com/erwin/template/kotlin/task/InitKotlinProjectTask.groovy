@@ -6,7 +6,7 @@ import com.erwin.template.util.ProjectTemplate
 class InitKotlinProjectTask extends BaseProjectTask{
 
     void projectTask(){
-        ProjectTemplate.fromRoot("$projectName") {
+        ProjectTemplate.buildFromCurrentLocation("$projectName") {
             'src' {
                 'main' {
                     'kotlin' {
