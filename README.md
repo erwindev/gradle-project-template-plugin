@@ -10,7 +10,7 @@ to scaffold any type of project that you want.
 ## Installation
 
 In order to use this plugin, you have to first publish it to your local maven 
-repo.
+repo. _note: I still need to figure out how I can publish the plugin to Bintray._
 
 ```
 $ git clone https://github.com/erwindev/gradle-project-template-plugin.git
@@ -23,8 +23,7 @@ $ ./gradlew publishToMavenLocal
 
 To start using the plugin, you will need to create a `build.gradle` script.
 
-
-Create a directory and add your `build.gradle` script in there.
+Create a directory and place your `build.gradle` script in there.
 ```
 $ mkdir your-project
 $ cd your-project
@@ -66,14 +65,14 @@ $ gradle assemble test
 $ java -jar build/libs/defaultproject-0.1.0.jar
 ```
 
-Access the application through Swagger UI by going to 
-`http://localhost:8999/swagger-ui.html` page.
+Access the application through Swagger UI 
+(`http://localhost:8999/swagger-ui.html`).
 
 You can also see the Test Reports by loading 
 `build/reports/tests/test/index.html` in your browser
 
 ## Exporting the base templates
-The templates used to generate the Spring Boot project are included in the plugin.
+The base templates used to generate the Spring Boot project are included in the plugin.
 To see what these templates look like, you can export them.  
 
 ```
@@ -81,14 +80,14 @@ $ cd your-project
 $ gradle -q --console=plain exportJavaTemplates
 ```
 
-You should see the `export-java-templates` directory which contains the templates.
+You should see the `export-java-templates` directory that contains all base the templates.
 
 ## Scaffolding your own project
 You can create your own scaffolded project.  You are also not limited 
 to a Java project.  You can basically use this plugin to generate any type
 of project using any language you wish.
 
-In order to do that, we will need to define new tasks in the `build.gradle` script.
+In order to do that, we will need to define a new task in the `build.gradle` script.
 
 Append the following in the `build.gradle` script.
 ```
@@ -114,7 +113,7 @@ task 'initMyOwnProject' << {
 }
 ```
 
-Create your templates in `my-templates/java` directory.
+Create your templates in `my-templates/java` directory and create a `java-class.tpl` template.
 ```
 $ mkdir my-templates
 $ cd my-templates
@@ -124,7 +123,6 @@ $ vi java-class.tpl
 ```
 
 Contents of the `java-class.tpl` template
-
 ```
 package ${classPackage};
 
@@ -138,7 +136,7 @@ public class ${className} {
 }
 ```
 
-Run the `initMyOwnProject`
+Run the `initMyOwnProject` task
 
 ```
 $ gradle -q --console=plain initMyOwnProject
@@ -146,7 +144,7 @@ Project Name:
 fox
 ```
 
-You should have `fox` directory that contains your generated project.
+You should see a `fox` directory that contains your generated project.
 
 ## To Do
 * Publish to remote Maven repo
