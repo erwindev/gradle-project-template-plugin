@@ -1,6 +1,6 @@
 package ${classPackage}.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,20 +17,11 @@ import ${classPackage}.service.${serviceName};
 @SpringBootTest
 public class ServiceTest {
 
-	@TestConfiguration
-	static class ServiceImplTestContextConfiguration {
-
-        @Bean
-        public ${serviceName} service() {
-                return new ${serviceName}();
-        }
-	}
-
 	@Autowired
-	${serviceName} service
+	${serviceName} service;
 
 	@Test
 	public void whoAmIShouldReturnMessageFromService() throws Exception{
-		assertThat(service.whoAmI(), is("I AM GROOT"));
+		assertEquals(service.whoAmI(), "I AM GROOT!");
 	}
 }

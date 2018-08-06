@@ -7,7 +7,7 @@ buildscript {
   }
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:\${springBootVersion}")
-		classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+	classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
     classpath("net.saliman:gradle-cobertura-plugin:2.3.1")
   }
 }
@@ -18,7 +18,8 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.flywaydb.flyway'
-apply plugin: 'net.saliman.cobertura'
+apply plugin: 'cobertura'
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
@@ -65,13 +66,18 @@ dependencies {
 	testCompile("org.springframework.boot:spring-boot-starter-test:\${springBootVersion}")
 }
 
-sourceSets.main.output.classesDir = new File(buildDir, "classes/main")
-
 cobertura {
-	coverageFormats = ['html', 'xml']
-	coverageIgnoreTrivial = true
-	coverageIgnores = ['org.slf4j.Logger.*']
-	coverageReportDir = new File("\$buildDir/reports/cobertura")
+    coverageFormats = ['html', 'xml']
+    coverageIgnoreTrivial = true
+    coverageIgnores = ['org.slf4j.Logger.*']
+    coverageReportDir = new File("\$buildDir/reports/cobertura")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 sourceCompatibility = 1.8

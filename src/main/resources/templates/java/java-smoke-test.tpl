@@ -19,6 +19,6 @@ public class SmokeTest {
 
     @Test
     public void contexLoads() throws Exception {
-        assertThat(controller).isNotNull()
+        assertThat(controller).isNotNull();
     }
 }
