@@ -18,7 +18,7 @@ class TemplatePluginTest {
     @Before
     public void setup(){
         build_gradle = testProjectDir.newFile("build.gradle")
-        build_gradle << 'plugins {id "com.erwin.template.TemplatePlugin"}\n'
+        build_gradle << 'plugins {id "gradle-project-template-plugin"}\n'
     }
 
     private BuildResult gradle(boolean isSuccessExpected, String[] arguments = ['tasks']) {

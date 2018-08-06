@@ -3,6 +3,7 @@
 /build/
 
 /out/
+env.sh
 
 ## Intellij ##
 .idea

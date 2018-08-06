@@ -4,10 +4,9 @@
 plugins{
     id 'groovy'
     id 'java-gradle-plugin'
-
     id 'com.gradle.plugin-publish' version '0.9.10'
-
     id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.8.4'
 }
 
 /*
@@ -27,12 +26,12 @@ dependencies {
 * Project Configuration
 */
 
-project.description     = 'Project Template Plugin'
-project.group           = 'com.erwin'
+project.description     = 'ustom Gradle Plugin for Scaffolding Project'
+project.group           = 'com.erwindev'
 
 project.ext.name        = 'template-project'
 project.ext.pluginId    = 'gradle-project-template-plugin'
-project.ext.scm         = 'scm:git@github.com:erwindev/gradle-project-template-plugin.git'
+project.ext.scm         = 'https://github.com/erwindev/gradle-project-template-plugin.git'
 project.ext.url         = 'https://github.com/erwindev/gradle-project-template-plugin'
 
 /*
@@ -42,9 +41,23 @@ project.ext.url         = 'https://github.com/erwindev/gradle-project-template-p
 
 gradlePlugin {
     plugins {
-        projectCreatorPlugin {
+        scaffoldPlugin {
             id = project.pluginId
             implementationClass = 'com.erwin.template.TemplatePlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = project.url
+    vcsUrl = project.scm
+    tags = ['template', 'scaffold']
+
+    plugins {
+        scaffoldPlugin {
+            displayName = 'Scaffolding Gradle Plugin'
+            description = project.description
+            id          = project.pluginId
         }
     }
 }
@@ -62,13 +75,19 @@ publishing {
             version     project.version
         }
     }
-//    repositories {
-//        maven {
-//            url  "https://dl.bintray.com/erwindev/erwindev-maven-repo"
-//            credentials {
-//                username project.rtfUser
-//                password project.rtfSecret
-//            }
-//        }
-//    }
+}
+
+bintray{
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    pkg {
+        repo = 'erwindev-maven-repo'
+        name = project.name
+        userOrg = 'erwindev'
+        licenses = ['Apache-2.0']
+        vcsUrl = project.ext.scm
+        websiteUrl = project.ext.url
+        githubRepo = 'erwindev/gradle-project-template-plugin'
+        githubReleaseNotesFile = 'README.md'
+    }
 }
